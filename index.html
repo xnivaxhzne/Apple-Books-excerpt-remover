@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Processor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+        background-color: #ffffff;
+        color: #000000;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .dark-mode {
+        background-color: #1e1e1e;
+        color: #ffffff;
+      }
+
+      textarea {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        color: #000000;
+        border: 1px solid #ccc;
+      }
+
+      .dark-mode textarea {
+        background-color: #333333;
+        color: #ffffff;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+        color: #000000;
+      }
+
+      .dark-mode pre {
+        background-color: #333333;
+        color: #ffffff;
+      }
+
+      .toggle-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+
+      .dark-mode .toggle-btn {
+        background-color: #555555;
+      }
+    </style>
+  </head>
+
+  <body class="dark-mode">
+    <h1>Text Processor</h1>
+    <p>
+      Paste your text below, and the processed text will be copied to your
+      clipboard automatically. The processed content will be shown below the
+      input box.
+    </p>
+    <textarea
+      id="inputText"
+      placeholder="Paste your text here..."
+      oninput="processText()"
+    ></textarea>
+    <h3>Processed Text:</h3>
+    <pre id="outputText"></pre>
+
+    <script>
+      function processText() {
+        const inputText = document.getElementById("inputText").value;
+
+        // Split the text into lines
+        const lines = inputText.split("\n");
+
+        // Create an array to hold the final lines
+        const filteredLines = [];
+
+        // Iterate over each line
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+
+          // If the current line contains "Excerpt From", stop processing further
+          if (line.includes("Excerpt From")) {
+            break; // Exit the loop and ignore all remaining lines
+          }
+
+          // Add the line to the filteredLines if it doesn't match any condition
+          filteredLines.push(lines[i]);
+        }
+
+        // Join the filtered lines back into a single string
+        let processedText = filteredLines.join("\n");
+
+        // Remove starting and ending quotes
+        processedText = processedText
+          .trim()
+          .replace(/^“/, "")
+          .replace(/”$/, "");
+
+        // Copy the processed text to the clipboard
+        navigator.clipboard
+          .writeText(processedText)
+          .then(() => {
+            console.log("Text copied to clipboard");
+            // Display the processed text and clear the textarea
+            document.getElementById("outputText").textContent = processedText;
+            const textarea = document.getElementById("inputText");
+            textarea.value = ""; // Clear the input
+            textarea.focus(); // Refocus for new input
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+          });
+      }
+    </script>
+  </body>
+</html>
