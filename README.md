@@ -2,24 +2,17 @@
 
 Apple Books Excerpt Remover is a simple web app designed to automatically process and clean up text copied from Apple Books, removing unnecessary excerpts in **no clicks** and copying the cleaned text directly to your clipboard.
 
-## Features
-
-- **Automatic Text Processing**: Simply paste text into the input field. The app detects and removes lines like `Excerpt From`, then copies the cleaned text to your clipboard instantly.
-- **No-Click Workflow**: The app automatically processes the text and copies it to the clipboard without any additional steps.
-
-## Screenshots
+Access the app at: https://xnivaxhzne.github.io/Apple-Books-excerpt-remover/
 
 ### App Interface
 
 ![App Screenshot](assets/app.png)
 
-### Before and After
+**Before Processing**:  
+ ![Before](assets/before.png)
 
-- **Before Processing**:  
-  ![Before](assets/before.png)
-
-- **After Processing**:  
-  ![After](assets/after.png)
+s**After Processing**:  
+ ![After](assets/after.png)
 
 ## How to Use
 
