@@ -4,34 +4,86 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Apple Books Excerpt Remover</title>
+
+    <!-- Meta Tags for SEO -->
+    <meta
+      name="description"
+      content="Easily remove 'Excerpt From' and unwanted text from content copied from Apple Books. Fast, simple, and automatic text cleaner."
+    />
+    <meta
+      name="keywords"
+      content="Apple Books, Excerpt Remover, Text Cleaner, Copy Text Tool, Remove Excerpt, Apple Books Text"
+    />
+    <meta name="author" content="xnivaxhzne" />
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Apple Books Excerpt Remover" />
+    <meta
+      property="og:description"
+      content="Remove unwanted 'Excerpt From' text from Apple Books content with this simple online tool."
+    />
+    <meta
+      property="og:url"
+      content="https://xnivaxhzne.github.io/apple-books-excerpt-remover/"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://xnivaxhzne.github.io/apple-books-excerpt-remover/assets/og.png"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Apple Books Excerpt Remover" />
+    <meta
+      name="twitter:description"
+      content="Quickly clean Apple Books text with this online tool. Removes 'Excerpt From' with one click."
+    />
+    <meta
+      name="twitter:image"
+      content="https://xnivaxhzne.github.io/apple-books-excerpt-remover/assets/og.png"
+    />
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Apple Books Excerpt Remover",
+        "url": "https://xnivaxhzne.github.io/apple-books-excerpt-remover/",
+        "description": "Remove 'Excerpt From' text from Apple Books content quickly and easily.",
+        "author": {
+          "@type": "Person",
+          "name": "xnivaxhzne"
+        },
+        "applicationCategory": "Utilities",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript"
+      }
+    </script>
+
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         font-family: Arial, sans-serif;
         margin: 50px;
-        background-color: #ffffff;
-        color: #000000;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .dark-mode {
         background-color: #1e1e1e;
         color: #ffffff;
+        transition: background-color 0.3s, color 0.3s;
       }
 
       textarea {
         width: 100%;
-        height: 40px;
+        height: 30vh;
         padding: 10px;
         box-sizing: border-box;
         margin-bottom: 20px;
-        background-color: #f9f9f9;
-        color: #000000;
-        border: 1px solid #ccc;
-      }
-
-      .dark-mode textarea {
         background-color: #333333;
         color: #ffffff;
+        border: 1px solid #ccc;
       }
 
       pre {
@@ -40,27 +92,17 @@
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        background-color: #f9f9f9;
-        color: #000000;
-      }
-
-      .dark-mode pre {
         background-color: #333333;
-        color: #ffffff;
+        color: #aeadad;
+        display: none;
       }
 
-      .toggle-btn {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        background-color: #007bff;
-        color: white;
-        cursor: pointer;
-        margin-bottom: 20px;
+      .copiedToClipboard {
+        display: none;
       }
 
-      .dark-mode .toggle-btn {
-        background-color: #555555;
+      .show {
+        display: block;
       }
     </style>
   </head>
@@ -76,9 +118,10 @@
       id="inputText"
       placeholder="Paste your text here..."
       oninput="processText()"
+      aria-label="Text input for Apple Books excerpt remover"
     ></textarea>
-    <h3>Processed Text:</h3>
-    <pre id="outputText"></pre>
+    <h3 class="copiedToClipboard">Copied to clipboard ✅</h3>
+    <pre id="outputText" aria-live="polite"></pre>
 
     <script>
       function processText() {
@@ -118,7 +161,10 @@
           .then(() => {
             console.log("Text copied to clipboard");
             // Display the processed text and clear the textarea
-            document.getElementById("outputText").textContent = processedText;
+            document.querySelector(".copiedToClipboard").classList.add("show");
+            const outputTextEl = document.getElementById("outputText");
+            outputTextEl.classList.add("show");
+            outputTextEl.textContent = processedText;
             const textarea = document.getElementById("inputText");
             textarea.value = ""; // Clear the input
             textarea.focus(); // Refocus for new input
@@ -126,6 +172,11 @@
           .catch((err) => {
             console.error("Failed to copy text: ", err);
           });
+
+        setTimeout(() => {
+          document.querySelector(".copiedToClipboard").classList.remove("show");
+          document.getElementById("outputText").classList.remove("show");
+        }, 2000);
       }
     </script>
   </body>

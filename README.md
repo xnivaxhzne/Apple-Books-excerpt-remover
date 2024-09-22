@@ -8,11 +8,7 @@ Access the app at: https://xnivaxhzne.github.io/Apple-Books-excerpt-remover/
 
 ![App Screenshot](assets/app.png)
 
-**Before Processing**:  
- ![Before](assets/before.png)
-
-s**After Processing**:  
- ![After](assets/after.png)
+![Before](assets/og.png)
 
 ## How to Use
 
