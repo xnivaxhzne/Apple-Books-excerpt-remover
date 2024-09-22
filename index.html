@@ -104,6 +104,26 @@
       .show {
         display: block;
       }
+
+      .github-link {
+        display: flex;
+        margin-bottom: 20px;
+        text-align: center;
+        bottom: 0;
+        width: 100%;
+        justify-content: center;
+        position: fixed;
+        font-size: 16px;
+      }
+
+      .github-link a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .github-link a:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
 
@@ -122,6 +142,18 @@
     ></textarea>
     <h3 class="copiedToClipboard">Copied to clipboard ✅</h3>
     <pre id="outputText" aria-live="polite"></pre>
+
+    <!-- GitHub link -->
+    <div class="github-link">
+      <p>
+        Suggestions @
+        <a
+          href="https://github.com/xnivaxhzne/apple-books-excerpt-remover"
+          target="_blank"
+          >GitHub</a
+        >
+      </p>
+    </div>
 
     <script>
       function processText() {
